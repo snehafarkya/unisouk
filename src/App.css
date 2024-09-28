@@ -1,0 +1,134 @@
+.App {
+  text-align: center;
+
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media screen and (max-width:600px) {
+  .App{
+    overflow-x: hidden;
+  }
+}
+.animation {
+  animation: move 2s linear infinite; /* Use linear for continuous smooth motion */
+  transform: translateX(-10px); /* Initial transform */
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px); /* Midpoint translation */
+  }
+  100% {
+    transform: translateX(-10px); /* Back to starting point for smooth loop */
+  }
+}
+
+.marquee {
+  --gap: 2.5rem;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+  mask-image: linear-gradient(to right, transparent 0, black 128px, black calc(100% - 128px), transparent 100%);
+  
+
+}
+.marquee::before{
+  mask-image: linear-gradient(to right, transparent 0, black 128px, black calc(100% - 128px), transparent 100%);
+}
+.marquee-text {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 40px;  
+  animation: marquee-animation 10s linear infinite;
+  animation-delay: 0;
+  align-content: center;
+  align-items: center;
+}
+.textt {
+  animation: fadeOut 2s;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 5;
+  }
+}
+.marque-text2 {
+  width: 40px;
+  overflow: hidden;
+
+  animation: marquee-animation 10s linear infinite;
+  /* // animation-delay: 3s; */
+}
+@keyframes marquee-animation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+.cardcarousel.paused .card {
+  transition: none;
+}
+
+.card {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+
+  transform: translateX(-50%) scale(1.0); /* Center the card horizontally */
+  z-index: 10;
+  transition: all 2s ease;
+
+}
+
+.card.left {
+  left: 20%; /* Adjusted for equal spacing */
+  transform: translateX(-50%) scale(0.96);
+  top: 17%;
+  z-index: 5;
+}
+
+.card.right {
+  left: 80%; /* Adjusted for equal spacing */
+  transform: translateX(-50%) scale(0.96);
+  top: 17%;
+  z-index: 5;
+}
+.focus img {
+  border-radius: 16px; /* Example: Apply border radius to the focused image */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Example: Add shadow to focused image */
+  transform: scale(1.1); /* Optional: Scale the image for emphasis */
+  transition: all 0.5s ease-in-out;
+}
+
+
+.cardcarousel:hover .clicktopause {
+  display: inline-block;
+}
+
+.cardcarousel:hover .entertopause {
+  display: none;
+}
+
+.cardcarousel.paused .clicktoplay {
+  display: inline-block;
+}
+
+.cardcarousel.paused .clicktopause {
+  display: none;
+}
